@@ -1,0 +1,1 @@
+cmd='/usr/bin/cmake;-DSDKCONFIG=/home/german/esp/bluepad32/src/sdkconfig;-DIDF_PATH=/home/german/esp/esp-idf;-DIDF_TARGET=esp32;-DPYTHON_DEPS_CHECKED=1;-DPYTHON=/home/german/.espressif/python_env/idf4.1_py3.8_env/bin/python;-DEXTRA_COMPONENT_DIRS=/home/german/esp/esp-idf/components/bootloader;-DLEGACY_INCLUDE_COMMON_HEADERS=;-GUnix Makefiles;<SOURCE_DIR><SOURCE_SUBDIR>'
