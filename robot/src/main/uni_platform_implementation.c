@@ -29,14 +29,20 @@ limitations under the License.
 #include "driver/mcpwm.h"
 #include "soc/mcpwm_periph.h"
 
-//#define GPIO_PWM0A0_OUT 25   //Set GPIO 32 as PWM0A1 in unit 0
-//#define GPIO_PWM0B0_OUT 26   //Set GPIO 33 as PWM0B1 in unit 0
-//#define GPIO_PWM1A1_OUT 32   //Set GPIO 34 as PWM0A2 in unit 1
-//#define GPIO_PWM1B1_OUT 33   //Set GPIO 35 as PWM0B2 in unit 1
-#define GPIO_PWM0A0_OUT 32   //Set GPIO 32 as PWM0A1 in unit 0
-#define GPIO_PWM0B0_OUT 33   //Set GPIO 33 as PWM0B1 in unit 0
-#define GPIO_PWM1A1_OUT 26   //Set GPIO 34 as PWM0A2 in unit 1
-#define GPIO_PWM1B1_OUT 25   //Set GPIO 35 as PWM0B2 in unit 1
+
+#define GPIO_PWM0A0_OUT 25   //Set GPIO 32 as PWM0A1 in unit 0
+#define GPIO_PWM0B0_OUT 26   //Set GPIO 33 as PWM0B1 in unit 0
+#define GPIO_PWM1A1_OUT 32  //Set GPIO 34 as PWM0A2 in unit 1
+#define GPIO_PWM1B1_OUT 33   //Set GPIO 35 as PWM0B2 in unit 1
+
+#define GPIO_LED1_OUT 27 // bottom left
+#define GPIO_LED2_OUT 14 // bottom right
+#define GPIO_LED3_OUT 12 // top
+//#define GPIO_PWM0A0_OUT 32   //Set GPIO 32 as PWM0A1 in unit 0
+//#define GPIO_PWM0B0_OUT 33   //Set GPIO 33 as PWM0B1 in unit 0
+//#define GPIO_PWM1A1_OUT 25   //Set GPIO 34 as PWM0A2 in unit 1
+//#define GPIO_PWM1B1_OUT 26   //Set GPIO 35 as PWM0B2 in unit 1
+
 
 //
 // Globals
@@ -57,10 +63,20 @@ static pc_debug_instance_t* get_pc_debug_instance(uni_hid_device_t* d);
 //
 static void pc_debug_init(int argc, const char** argv) {
   printf("initializing mcpwm gpio...\n");
+  
+  // PWM PINS - MOTORS
   mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, GPIO_PWM0A0_OUT);
   mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0B, GPIO_PWM0B0_OUT);
   mcpwm_gpio_init(MCPWM_UNIT_1, MCPWM0A, GPIO_PWM1A1_OUT);
   mcpwm_gpio_init(MCPWM_UNIT_1, MCPWM0B, GPIO_PWM1B1_OUT);
+
+  // PWM PINS - LEDS
+  mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0B, GPIO_LED1_OUT);
+  mcpwm_gpio_init(MCPWM_UNIT_1, MCPWM0A, GPIO_LED2_OUT);
+  mcpwm_gpio_init(MCPWM_UNIT_1, MCPWM0B, GPIO_LED3_OUT);
+  
+
+
 
   mcpwm_config_t pwm_config0;
   pwm_config0.frequency = 100000;    //frequency = 100Hz,
@@ -78,6 +94,8 @@ static void pc_debug_init(int argc, const char** argv) {
   pwm_config1.counter_mode = MCPWM_UP_COUNTER;
   pwm_config1.duty_mode = MCPWM_DUTY_MODE_0;
   mcpwm_init(MCPWM_UNIT_1, MCPWM_TIMER_0, &pwm_config1);
+
+
 }
 
 static void pc_debug_on_init_complete(void) {
@@ -122,7 +140,7 @@ void set_pwm0(int32_t motor){
 void set_pwm1(int32_t motor){
   float duty = f_abs((float) motor / 5.12)/4;
   if (motor>=0){
-    mcpwm_set_signal_low(MCPWM_UNIT_1, MCPWM_TIMER_0, MCPWM_OPR_B);
+      
     mcpwm_set_duty(MCPWM_UNIT_1, MCPWM_TIMER_0, MCPWM_OPR_A, duty);
     mcpwm_set_duty_type(MCPWM_UNIT_1, MCPWM_TIMER_0, MCPWM_OPR_A, MCPWM_DUTY_MODE_0);
   }else {
