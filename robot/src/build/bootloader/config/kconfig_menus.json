@@ -3285,7 +3285,10 @@
                         "help": null,
                         "id": "ESP_CONSOLE_UART_BAUDRATE",
                         "name": "ESP_CONSOLE_UART_BAUDRATE",
-                        "range": null,
+                        "range": [
+                            1200,
+                            4000000
+                        ],
                         "title": "UART console baud rate",
                         "type": "int"
                     },

@@ -290,7 +290,6 @@
 /home/gabbiewink/esp/robot/src/build/esp-idf/bt/CMakeFiles/list_install_components.dir
 /home/gabbiewink/esp/robot/src/build/esp-idf/bt/CMakeFiles/rebuild_cache.dir
 /home/gabbiewink/esp/robot/src/build/esp-idf/bt/CMakeFiles/edit_cache.dir
-/home/gabbiewink/esp/robot/src/build/esp-idf/bt/CMakeFiles/__idf_bt.dir
 /home/gabbiewink/esp/robot/src/build/esp-idf/btstack/CMakeFiles/install/strip.dir
 /home/gabbiewink/esp/robot/src/build/esp-idf/btstack/CMakeFiles/install/local.dir
 /home/gabbiewink/esp/robot/src/build/esp-idf/btstack/CMakeFiles/install.dir

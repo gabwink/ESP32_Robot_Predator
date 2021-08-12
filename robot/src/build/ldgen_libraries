@@ -27,7 +27,6 @@
 /home/gabbiewink/esp/robot/src/build/esp-idf/cxx/libcxx.a
 /home/gabbiewink/esp/robot/src/build/esp-idf/app_trace/libapp_trace.a
 /home/gabbiewink/esp/robot/src/build/esp-idf/asio/libasio.a
-/home/gabbiewink/esp/robot/src/build/esp-idf/bt/libbt.a
 /home/gabbiewink/esp/robot/src/build/esp-idf/btstack/libbtstack.a
 /home/gabbiewink/esp/robot/src/build/esp-idf/cbor/libcbor.a
 /home/gabbiewink/esp/robot/src/build/esp-idf/coap/libcoap.a

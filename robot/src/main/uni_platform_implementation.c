@@ -36,7 +36,6 @@ limitations under the License.
 #define GPIO_PWM1B1_OUT 33   //Set GPIO 35 as PWM0B2 in unit 1
 
 
-
 //
 // Globals
 //
@@ -62,7 +61,6 @@ static void pc_debug_init(int argc, const char** argv) {
   mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0B, GPIO_PWM0B0_OUT);
   mcpwm_gpio_init(MCPWM_UNIT_1, MCPWM0A, GPIO_PWM1A1_OUT);
   mcpwm_gpio_init(MCPWM_UNIT_1, MCPWM0B, GPIO_PWM1B1_OUT);
-
 
 
   mcpwm_config_t pwm_config0;
@@ -113,8 +111,6 @@ float f_abs(float n){
 
 void set_pwm0(int32_t motor){
   float duty = f_abs((float) motor / 5.12)/4;
-  //float duty = 1
-  //float duty = f_abs((float) motor;
   if (motor>=0){
     mcpwm_set_signal_low(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B);
     mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, duty);
@@ -128,10 +124,8 @@ void set_pwm0(int32_t motor){
 
 void set_pwm1(int32_t motor){
   float duty = f_abs((float) motor / 5.12)/4;
-  //float duty = f_abs((float) motor;
-  //float duty = 1
   if (motor>=0){
-      
+    mcpwm_set_signal_low(MCPWM_UNIT_1, MCPWM_TIMER_0, MCPWM_OPR_B);  
     mcpwm_set_duty(MCPWM_UNIT_1, MCPWM_TIMER_0, MCPWM_OPR_A, duty);
     mcpwm_set_duty_type(MCPWM_UNIT_1, MCPWM_TIMER_0, MCPWM_OPR_A, MCPWM_DUTY_MODE_0);
   }else {
