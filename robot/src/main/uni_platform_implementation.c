@@ -35,13 +35,6 @@ limitations under the License.
 #define GPIO_PWM1A1_OUT 32  //Set GPIO 34 as PWM0A2 in unit 1
 #define GPIO_PWM1B1_OUT 33   //Set GPIO 35 as PWM0B2 in unit 1
 
-#define GPIO_LED1_OUT 27 // bottom left
-#define GPIO_LED2_OUT 14 // bottom right
-#define GPIO_LED3_OUT 12 // top
-//#define GPIO_PWM0A0_OUT 32   //Set GPIO 32 as PWM0A1 in unit 0
-//#define GPIO_PWM0B0_OUT 33   //Set GPIO 33 as PWM0B1 in unit 0
-//#define GPIO_PWM1A1_OUT 25   //Set GPIO 34 as PWM0A2 in unit 1
-//#define GPIO_PWM1B1_OUT 26   //Set GPIO 35 as PWM0B2 in unit 1
 
 
 //
@@ -69,12 +62,6 @@ static void pc_debug_init(int argc, const char** argv) {
   mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0B, GPIO_PWM0B0_OUT);
   mcpwm_gpio_init(MCPWM_UNIT_1, MCPWM0A, GPIO_PWM1A1_OUT);
   mcpwm_gpio_init(MCPWM_UNIT_1, MCPWM0B, GPIO_PWM1B1_OUT);
-
-  // PWM PINS - LEDS
-  mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0B, GPIO_LED1_OUT);
-  mcpwm_gpio_init(MCPWM_UNIT_1, MCPWM0A, GPIO_LED2_OUT);
-  mcpwm_gpio_init(MCPWM_UNIT_1, MCPWM0B, GPIO_LED3_OUT);
-  
 
 
 
@@ -126,6 +113,8 @@ float f_abs(float n){
 
 void set_pwm0(int32_t motor){
   float duty = f_abs((float) motor / 5.12)/4;
+  //float duty = 1
+  //float duty = f_abs((float) motor;
   if (motor>=0){
     mcpwm_set_signal_low(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B);
     mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, duty);
@@ -139,6 +128,8 @@ void set_pwm0(int32_t motor){
 
 void set_pwm1(int32_t motor){
   float duty = f_abs((float) motor / 5.12)/4;
+  //float duty = f_abs((float) motor;
+  //float duty = 1
   if (motor>=0){
       
     mcpwm_set_duty(MCPWM_UNIT_1, MCPWM_TIMER_0, MCPWM_OPR_A, duty);
